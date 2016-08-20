@@ -42,7 +42,7 @@ defmodule Rumbl.InfoSys do
     receive do
       {:results, ^query_ref, results} ->
         Process.demonitor(monitor_ref, [:flush])
-        await_result(tail, result ++ acc, timeout)
+        await_result(tail, results ++ acc, timeout)
       {:DOWN, ^monitor_ref, :process, ^pid, _reason} ->
         await_result(tail, acc, timeout)
       :timedout ->
